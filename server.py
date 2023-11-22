@@ -1,17 +1,14 @@
-from flask import Flask, jsonify
+from flask import Flask, make_response
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/exp')
+def index_explicit():
+    # Creating a custom response with make_response()
+    response = make_response("Custom response with status 200", 200)
 
-@app.route('/no_content')
-def no_content():
-    # Returning a tuple with a custom HTTP status code (204) and a JSON message
-    return jsonify({"message": "No content found"}), 204
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
-
 
